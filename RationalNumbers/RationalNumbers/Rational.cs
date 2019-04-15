@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RationalNumbers
 {
-    public struct Rational : IComparable<int>, IEquatable<int>
+    public struct Rational : IComparable<Rational>, IEquatable<Rational>
     {
         public int Numerator { get; set; }
 
@@ -27,19 +27,57 @@ namespace RationalNumbers
 
         public static int Gcd(int x, int y) => y == 0 ? x : Gcd(y, x % y);
 
-        public bool Equals(int other)
+        public bool Equals(Rational rational)
         {
-            throw new NotImplementedException();
+            return (Numerator == rational.Numerator && Denominator == rational.Denominator) ? true : false;
         }
 
-        public int CompareTo(int other)
+        public int CompareTo(Rational rational)
         {
-            throw new NotImplementedException();
+            return this.CompareTo(rational);
         }
 
         public override string ToString()
         {
             return Denominator > 1 ? $"{Numerator}r{Denominator}" : $"{Numerator}";
+        }
+
+        public static Rational operator +(Rational r1, Rational r2)
+        {
+            int commonDenominator = r1.Denominator * r2.Denominator;
+            return new Rational
+            {
+                Numerator = (r1.Numerator * r2.Denominator) + (r2.Numerator * r1.Denominator),
+                Denominator = commonDenominator
+            };
+        }
+
+        public static Rational operator -(Rational r1, Rational r2)
+        {
+            int commonDenominator = r1.Denominator * r2.Denominator;
+            return new Rational
+            {
+                Numerator = (r1.Numerator * r2.Denominator) - (r2.Numerator * r1.Denominator),
+                Denominator = commonDenominator
+            };
+        }
+
+        public static Rational operator *(Rational r1, Rational r2)
+        {
+            return new Rational
+            {
+                Numerator = r1.Numerator * r2.Numerator,
+                Denominator = r1.Denominator * r2.Denominator
+            };
+        }
+
+        public static Rational operator /(Rational r1, Rational r2)
+        {
+            return new Rational
+            {
+                Numerator = r1.Numerator * r2.Denominator,
+                Denominator = r2.Denominator * r1.Numerator
+            };
         }
     }
 }
