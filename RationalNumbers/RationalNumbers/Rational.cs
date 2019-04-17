@@ -46,38 +46,38 @@ namespace RationalNumbers
         {
             int commonDenominator = r1.Denominator * r2.Denominator;
             return new Rational
-            {
-                Numerator = (r1.Numerator * r2.Denominator) + (r2.Numerator * r1.Denominator),
-                Denominator = commonDenominator
-            };
+            (
+                (r1.Numerator * r2.Denominator) + (r2.Numerator * r1.Denominator),
+                commonDenominator
+            );
         }
 
         public static Rational operator -(Rational r1, Rational r2)
         {
             int commonDenominator = r1.Denominator * r2.Denominator;
             return new Rational
-            {
-                Numerator = (r1.Numerator * r2.Denominator) - (r2.Numerator * r1.Denominator),
-                Denominator = commonDenominator
-            };
+            (
+                (r1.Numerator * r2.Denominator) - (r2.Numerator * r1.Denominator),
+                commonDenominator
+            );
         }
 
         public static Rational operator *(Rational r1, Rational r2)
         {
             return new Rational
-            {
-                Numerator = r1.Numerator * r2.Numerator,
-                Denominator = r1.Denominator * r2.Denominator
-            };
+            (
+                r1.Numerator * r2.Numerator,
+                r1.Denominator * r2.Denominator
+            );
         }
 
         public static Rational operator /(Rational r1, Rational r2)
         {
             return new Rational
-            {
-                Numerator = r1.Numerator * r2.Denominator,
-                Denominator = r2.Denominator * r1.Numerator
-            };
+            (
+                r1.Numerator * r2.Denominator,
+                r1.Denominator * r2.Numerator
+            );
         }
     }
 }
