@@ -22,6 +22,13 @@ namespace RationalNumbers.Test
         }
 
         [TestMethod]
+        public void ZeroDenominatorTest()
+        {
+            Assert.ThrowsException<ArithmeticException>(() => { var rat = new Rational(1, 0); },
+                "Zero denominator not allowed!");
+        }
+
+        [TestMethod]
         public void RationalObjectsEqual()
         {
             // Arrange
