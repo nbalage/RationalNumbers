@@ -37,6 +37,25 @@ namespace RationalNumbers.Test
             Assert.IsTrue(eq2);
         }
 
+        [DataTestMethod]
+        [DataRow(8, 6, 4, 3)]
+        [DataRow(16, 12, 4, 3)]
+        [DataRow(8, 6, 12, 9)]
+        public void RationalObjectsEqualDR(int p1, int p2, int p3, int p4)
+        {
+            // Arrange
+            var rat1 = new Rational(p1, p2);
+            var rat2 = new Rational(p3, p4);
+
+            // Act
+            var eq1 = rat1.Equals(rat2);
+            var eq2 = rat2.Equals(rat1);
+
+            // Assert
+            Assert.IsTrue(eq1);
+            Assert.IsTrue(eq2);
+        }
+
         [TestMethod]
         public void RationalObjectNotEqual()
         {
